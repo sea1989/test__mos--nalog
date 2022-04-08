@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Modal from '../Modal'
 
 import {
   CCard,
@@ -28,6 +29,13 @@ const getEmojiCountryFlag = (country) => {
 
 const Dashboard = () => {
   const [data, setData] = useState([])
+  const [modalData, setModalData] = useState([])
+  const [modalActive, setModalActive] = useState(false)
+
+  function buttonHandler(item) {
+    setModalActive(true)
+    setModalData(item)
+  }
 
   useEffect(() => {
     fetch(baseUrl)
@@ -90,7 +98,11 @@ const Dashboard = () => {
                 </CTableHead>
                 <CTableBody>
                   {data.map((item, index) => (
-                    <CTableRow v-for="item in tableItems" key={index}>
+                    <CTableRow
+                      v-for="item in tableItems"
+                      key={index}
+                      onClick={() => buttonHandler(item)}
+                    >
                       <CTableDataCell>
                         <div>{item.countriesName}</div>
                       </CTableDataCell>
@@ -120,6 +132,7 @@ const Dashboard = () => {
                     </CTableRow>
                   ))}
                 </CTableBody>
+                <Modal data={modalData} active={modalActive} setActive={setModalActive} />
               </CTable>
             </CCardBody>
           </CCard>
