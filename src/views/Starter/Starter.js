@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import {
-  CAvatar,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CProgress,
   CRow,
   CTable,
   CTableBody,
@@ -15,35 +13,6 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cibGoogle,
-  cibFacebook,
-  cibLinkedin,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
-  cibTwitter,
-  cilPeople,
-  cilUser,
-  cilUserFemale,
-} from '@coreui/icons'
-
-import avatar1 from 'src/assets/images/avatars/1.jpg'
-import avatar2 from 'src/assets/images/avatars/2.jpg'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
-import avatar4 from 'src/assets/images/avatars/4.jpg'
-import avatar5 from 'src/assets/images/avatars/5.jpg'
-import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 const baseUrl = 'https://covid-api.mmediagroup.fr/v1/cases'
 
@@ -106,12 +75,13 @@ const Dashboard = () => {
                     <CTableHeaderCell>Страна</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Континент</CTableHeaderCell>
                     <CTableHeaderCell>Регион</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">
+                    <CTableHeaderCell
+                      className="text-center"
+                      onClick={sortHandler('confirmed', 'asc')}
+                    >
                       Подтвержденные случаи
                     </CTableHeaderCell>
-                    <CTableHeaderCell onClick={sortHandler('deaths', 'asc')}>
-                      Выздоровевшие
-                    </CTableHeaderCell>
+                    <CTableHeaderCell>Выздоровевшие</CTableHeaderCell>
                     <CTableHeaderCell onClick={sortHandler('deaths', 'asc')}>
                       Смерти
                     </CTableHeaderCell>
